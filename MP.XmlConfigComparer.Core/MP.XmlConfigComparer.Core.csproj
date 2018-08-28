@@ -50,6 +50,10 @@
     <Compile Include="IConfigElementsComparerModule.cs" />
     <Compile Include="IXmlConfigurationComparer.cs" />
     <Compile Include="CompareResult.cs" />
+    <Compile Include="Modules\Log4NetLoggersConfigElementsComparerModule.cs" />
+    <Compile Include="Modules\Log4NetAppendersConfigElementsComparerModule.cs" />
+    <Compile Include="Modules\ServiceModelConfigElementsComparerModule.cs" />
+    <Compile Include="Modules\ConfigSectionConfigElementsComparerModule.cs" />
     <Compile Include="Modules\AppSettingsConfigElementsComparerModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlConfigurationComparer.cs" />
