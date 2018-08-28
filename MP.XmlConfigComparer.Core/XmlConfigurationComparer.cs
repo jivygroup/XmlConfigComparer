@@ -15,8 +15,8 @@ namespace MP.XmlConfigComparer.Core
     }
     public async Task<CompareResult>  Compare(string configPath1, string configPath2)
     {
-      XElement configElement1 = XElement.Load(configPath1);
-      XElement configElement2 = XElement.Load(configPath2);
+      XElement configElement1 = XElement.Load(configPath1,LoadOptions.SetLineInfo);
+      XElement configElement2 = XElement.Load(configPath2,LoadOptions.SetLineInfo);
 
       List<ConfigurationDiffGroup> configurationDiffGroups = new List<ConfigurationDiffGroup>();
 

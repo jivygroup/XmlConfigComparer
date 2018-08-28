@@ -2,7 +2,7 @@
 {
   public class ConfigurationElement
   {
-    public int LineNum { get; set; }
+    public int? LineNum { get; set; }
     public string Value { get; set; }
     
   }
