@@ -41,10 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompareResultsPrinter.cs" />
     <Compile Include="ConfigurationDiff.cs" />
     <Compile Include="ConfigurationDiffGroup.cs" />
     <Compile Include="ConfigurationElement.cs" />
     <Compile Include="Helpers\XElementExtentions.cs" />
+    <Compile Include="ICompareResultsPrinter.cs" />
     <Compile Include="IConfigElementsComparerModule.cs" />
     <Compile Include="IXmlConfigurationComparer.cs" />
     <Compile Include="CompareResult.cs" />
