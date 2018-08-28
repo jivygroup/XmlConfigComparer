@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.XmlConfigComparer.Runner", "MP.XmlConfigComparer.Runner\MP.XmlConfigComparer.Runner.csproj", "{FE174C4C-B6E2-4C38-B5BD-54B99A953134}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.XmlConfigComparer.Core", "MP.XmlConfigComparer.Core\MP.XmlConfigComparer.Core.csproj", "{37AA2A31-1E5E-48EB-92E2-D6F0C1D058C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE174C4C-B6E2-4C38-B5BD-54B99A953134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE174C4C-B6E2-4C38-B5BD-54B99A953134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE174C4C-B6E2-4C38-B5BD-54B99A953134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE174C4C-B6E2-4C38-B5BD-54B99A953134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37AA2A31-1E5E-48EB-92E2-D6F0C1D058C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37AA2A31-1E5E-48EB-92E2-D6F0C1D058C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37AA2A31-1E5E-48EB-92E2-D6F0C1D058C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37AA2A31-1E5E-48EB-92E2-D6F0C1D058C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48AED8A5-4A66-4637-A68C-841B82883F5C}
+	EndGlobalSection
+EndGlobal
