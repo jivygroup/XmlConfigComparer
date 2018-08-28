@@ -8,14 +8,15 @@ using MP.XmlConfigComparer.Core.Helpers;
 
 namespace MP.XmlConfigComparer.Core.Modules
 {
-  class AppSettingsConfigElementsComparerModule : IConfigElementsComparerModule
+  public class AppSettingsConfigElementsComparerModule : IConfigElementsComparerModule
   {
     public string DiffType => "AppSettings";
 
     public Task<List<ConfigurationDiff>> Compare(XElement configElements1, XElement configElements2)
     {
-      var appsettingsList1 = configElements1.Element("appSettings")?.Descendants().ToList();
-      var appsettingsList2 = configElements2.Element("appSettings")?.Descendants().ToList();
+
+      var appsettingsList1 = configElements1?.Element("appSettings")?.Descendants();
+      var appsettingsList2 = configElements2?.Element("appSettings")?.Descendants();
 
 
       var appsettingsDic1 = appsettingsList1?.ToDictionary(element => element.Attribute("key")?.Value) ?? new Dictionary<string, XElement>();
