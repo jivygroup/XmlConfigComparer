@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Xml.Linq;
 using MP.XmlConfigComparer.Core.Modules;
 using NUnit.Framework;
 
 namespace MP.XmlConfigComparer.Core.Unit.Tests
 {
-    [TestFixture]
+  [TestFixture]
     public class AppSettingsConfigElementsComparerModuleTests
     {
 
