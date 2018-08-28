@@ -47,13 +47,13 @@ namespace MP.XmlConfigComparer.Core.Modules
           
         }
 
-        else if (elem1.Attribute("value")?.Value != elem2.Attribute("value")?.Value)
+        else if (!(elem1.Attribute("value")?.Value).IsEqualIgnoreCaseAndSpaces(elem2.Attribute("value")?.Value))
         {
           diffList.Add(new ConfigurationDiff
           {
             Identifier = key,
-            ConfigurationItem1 = new ConfigurationElement {Value = elem1?.Attribute("value")?.Value,LineNum = elem1.GetLineNumber()},
-            ConfigurationItem2 = new ConfigurationElement {Value = elem2?.Attribute("value")?.Value,LineNum = elem2.GetLineNumber()}
+            ConfigurationItem1 = new ConfigurationElement {Value = elem1.Attribute("value")?.Value,LineNum = elem1.GetLineNumber()},
+            ConfigurationItem2 = new ConfigurationElement {Value = elem2.Attribute("value")?.Value,LineNum = elem2.GetLineNumber()}
           });
         }
 

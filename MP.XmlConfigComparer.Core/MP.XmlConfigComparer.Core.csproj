@@ -45,7 +45,8 @@
     <Compile Include="ConfigurationDiff.cs" />
     <Compile Include="ConfigurationDiffGroup.cs" />
     <Compile Include="ConfigurationElement.cs" />
-    <Compile Include="Helpers\XElementExtentions.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Helpers\XElementExtensions.cs" />
     <Compile Include="ICompareResultsPrinter.cs" />
     <Compile Include="IConfigElementsComparerModule.cs" />
     <Compile Include="IXmlConfigurationComparer.cs" />
