@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using MP.XmlConfigComparer.Core.Helpers;
@@ -83,7 +81,7 @@ namespace MP.XmlConfigComparer.Core.Modules
         return true;
       }
 
-      return XElement.DeepEquals(configSectionInfo1.Element, configSectionInfo2.Element);
+      return XNode.DeepEquals(configSectionInfo1.Element, configSectionInfo2.Element);
     }
 
     private List<ConfigSectionInfo> ReadConfigSections(XElement configElements)

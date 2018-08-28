@@ -53,6 +53,7 @@
     <Compile Include="Modules\AssemblyBindingsConfigElementsComparerModule.cs" />
     <Compile Include="Modules\Log4NetLoggersConfigElementsComparerModule.cs" />
     <Compile Include="Modules\Log4NetAppendersConfigElementsComparerModule.cs" />
+    <Compile Include="Modules\ConnectionStringConfigElementsComparerModule.cs" />
     <Compile Include="Modules\ServiceModelConfigElementsComparerModule.cs" />
     <Compile Include="Modules\ConfigSectionConfigElementsComparerModule.cs" />
     <Compile Include="Modules\AppSettingsConfigElementsComparerModule.cs" />

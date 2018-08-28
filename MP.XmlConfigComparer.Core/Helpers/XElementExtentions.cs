@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace MP.XmlConfigComparer.Core.Helpers
 {
-  public static class XElementExtentions
+  public static class XElementExtensions
   {
     public static int? GetLineNumber(this XElement element)
     {
