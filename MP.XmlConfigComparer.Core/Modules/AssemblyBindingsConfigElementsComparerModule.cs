@@ -95,7 +95,7 @@ namespace MP.XmlConfigComparer.Core.Modules
         return true;
       }
 
-      return XNode.DeepEquals(configSectionInfo1.Element, configSectionInfo2.Element);
+      return XElementExtensions.DeepEqualsWithNormalization(configSectionInfo1.Element, configSectionInfo2.Element);
     }
 
     private RuntimeAssemblyBindings ReadAssemblyBindings(XElement configElements)

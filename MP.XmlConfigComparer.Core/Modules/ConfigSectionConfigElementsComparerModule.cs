@@ -76,12 +76,13 @@ namespace MP.XmlConfigComparer.Core.Modules
 
     private bool IsEqual(ConfigSectionInfo configSectionInfo1, ConfigSectionInfo configSectionInfo2)
     {
-      if (configSectionInfo1 == null && configSectionInfo2 == null)
+      if ((configSectionInfo1 == null && configSectionInfo2 == null) ||
+          (configSectionInfo1?.Element == null && configSectionInfo2?.Element == null))
       {
         return true;
       }
 
-      return XNode.DeepEquals(configSectionInfo1.Element, configSectionInfo2.Element);
+      return XElementExtensions.DeepEqualsWithNormalization(configSectionInfo1.Element, configSectionInfo2.Element);
     }
 
     private List<ConfigSectionInfo> ReadConfigSections(XElement configElements)

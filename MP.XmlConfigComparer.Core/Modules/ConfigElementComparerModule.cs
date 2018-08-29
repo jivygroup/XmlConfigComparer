@@ -22,7 +22,7 @@ namespace MP.XmlConfigComparer.Core.Modules
       }
 
       if (element1 == null || element2 == null ||
-          !XNode.DeepEquals(element1, element2))
+          !XElementExtensions.DeepEqualsWithNormalization(element1, element2))
       {
         return Task.FromResult(new List<ConfigurationDiff>
         {
