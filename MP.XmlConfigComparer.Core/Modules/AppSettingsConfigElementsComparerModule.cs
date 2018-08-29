@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -17,8 +18,8 @@ namespace MP.XmlConfigComparer.Core.Modules
       var appsettingsList2 = configElements2?.Element("appSettings")?.Descendants();
 
 
-      var appsettingsDic1 = appsettingsList1?.ToDictionary(element => element.Attribute("key")?.Value) ?? new Dictionary<string, XElement>();
-      var appsettingsDic2 = appsettingsList2?.ToDictionary(element => element.Attribute("key")?.Value) ?? new Dictionary<string, XElement>();
+      var appsettingsDic1 = ToDictionarySafe(appsettingsList1);
+      var appsettingsDic2 = ToDictionarySafe(appsettingsList2);
 
       var allkeys = appsettingsDic1.Keys.Union(appsettingsDic2.Keys).ToList();
 
@@ -62,6 +63,22 @@ namespace MP.XmlConfigComparer.Core.Modules
     
 
       return Task.FromResult(diffList);
+    }
+
+    private Dictionary<string,XElement> ToDictionarySafe(IEnumerable<XElement> appsettingsList1)
+    {
+      Dictionary<string,XElement> res = new Dictionary<string, XElement>();
+      if (appsettingsList1 == null)
+      {
+        return res;
+      }
+      foreach (var element in appsettingsList1)
+      {
+        if (element?.Attribute("key")?.Value != null)
+          res[element.Attribute("key").Value] = element;
+      }
+
+      return res;
     }
   }
 }
