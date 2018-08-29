@@ -61,8 +61,8 @@ namespace MP.XmlConfigComparer.Core.Modules
           diffList.Add(new ConfigurationDiff
           {
             Identifier = key,
-            ConfigurationItem1 = new ConfigurationElement {Value = configSectionInfo1.Element?.ToString(),LineNum = configSectionInfo1.Element?.GetLineNumber()},
-            ConfigurationItem2 = new ConfigurationElement {Value = configSectionInfo2.Element?.ToString(),LineNum = configSectionInfo2.Element?.GetLineNumber()}
+            ConfigurationItem1 = configSectionInfo1.Element == null ? null : new ConfigurationElement {Value = configSectionInfo1.Element?.ToString(),LineNum = configSectionInfo1.Element?.GetLineNumber()},
+            ConfigurationItem2 = configSectionInfo2.Element == null ? null :new ConfigurationElement {Value = configSectionInfo2.Element?.ToString(),LineNum = configSectionInfo2.Element?.GetLineNumber()}
           });
         }
 

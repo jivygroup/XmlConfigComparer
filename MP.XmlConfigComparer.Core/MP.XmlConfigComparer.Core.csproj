@@ -72,6 +72,8 @@
     <Compile Include="IXmlConfigurationComparer.cs" />
     <Compile Include="CompareResult.cs" />
     <Compile Include="Modules\AssemblyBindingsConfigElementsComparerModule.cs" />
+    <Compile Include="Modules\ConfigElementComparerModule.cs" />
+    <Compile Include="Modules\SystemWebConfigElementsComparerModule.cs" />
     <Compile Include="Modules\SystemDiagnosticsConfigElementsComparerModule.cs" />
     <Compile Include="Modules\Log4NetLoggersConfigElementsComparerModule.cs" />
     <Compile Include="Modules\Log4NetAppendersConfigElementsComparerModule.cs" />
