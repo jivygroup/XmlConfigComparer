@@ -8,7 +8,7 @@ namespace MP.XmlConfigComparer.Core
 {
   public class CompareResultsPrinter : ICompareResultsPrinter
   {
-    public Task PrintResults(CompareResult compareResult, string baseConfigFile, string tragetConfigFile, string outputFile = null)
+    public Task<string> PrintResults(CompareResult compareResult, string baseConfigFile, string tragetConfigFile, string outputFile = null)
     {
       if (outputFile == null)
       {
@@ -18,7 +18,7 @@ namespace MP.XmlConfigComparer.Core
       XLWorkbook workbook = new XLWorkbook();
       workbook.Worksheets.Add(resultsDataTable);
       workbook.SaveAs(outputFile);
-      return Task.CompletedTask;
+      return Task.FromResult(outputFile);
     }
 
     private string GenerateFileName(string baseConfigFile, string tragetConfigFile)

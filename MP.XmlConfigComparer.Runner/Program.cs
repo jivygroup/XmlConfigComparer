@@ -25,7 +25,9 @@ namespace MP.XmlConfigComparer.Runner
         var res = await comparer.Compare(baseConfigFile, tragetConfigFile);
         var printer = container.Resolve<ICompareResultsPrinter>();
 
-        await printer.PrintResults(res, baseConfigFile, tragetConfigFile, outputFile);
+        var resfile = await printer.PrintResults(res, baseConfigFile, tragetConfigFile, outputFile);
+
+        Console.WriteLine("Done out file:{0}",resfile);
 
       }
       catch (Exception ex)
