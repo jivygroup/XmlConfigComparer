@@ -13,10 +13,10 @@ namespace MP.XmlConfigComparer.Core
     {
       _configElementsComparerModules = configElementsComparerModules;
     }
-    public async Task<CompareResult>  Compare(string configPath1, string configPath2)
+    public async Task<CompareResult>  Compare(string baseConfigFile, string tragetConfigFile)
     {
-      XElement configElement1 = XElement.Load(configPath1,LoadOptions.SetLineInfo);
-      XElement configElement2 = XElement.Load(configPath2,LoadOptions.SetLineInfo);
+      XElement configElement1 = XElement.Load(baseConfigFile,LoadOptions.SetLineInfo);
+      XElement configElement2 = XElement.Load(tragetConfigFile,LoadOptions.SetLineInfo);
 
       List<ConfigurationDiffGroup> configurationDiffGroups = new List<ConfigurationDiffGroup>();
 

@@ -8,6 +8,6 @@ namespace MP.XmlConfigComparer.Core
 {
   public interface ICompareResultsPrinter 
   {
-    Task PrintResults(CompareResult compareResult, string configFile1, string configFile2,string outputFile = null);
+    Task PrintResults(CompareResult compareResult, string baseConfigFile, string tragetConfigFile,string outputFile = null);
   }
 }

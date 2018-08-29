@@ -14,18 +14,18 @@ namespace MP.XmlConfigComparer.Runner
       {
         IContainer container = BuildContainer();
         var comparer = container.Resolve<IXmlConfigurationComparer>();
-        var configFile1 = args[0];
-        var configFile2 = args[1];
+        var baseConfigFile = args[0];
+        var tragetConfigFile = args[1];
         string outputFile = null;
         if (args.Length >= 3 && !string.IsNullOrWhiteSpace(args[2]))
         {
           outputFile = args[2];
         }
 
-        var res = await comparer.Compare(configFile1, configFile2);
+        var res = await comparer.Compare(baseConfigFile, tragetConfigFile);
         var printer = container.Resolve<ICompareResultsPrinter>();
 
-        await printer.PrintResults(res, configFile1, configFile2, outputFile);
+        await printer.PrintResults(res, baseConfigFile, tragetConfigFile, outputFile);
 
       }
       catch (Exception ex)
@@ -50,7 +50,7 @@ namespace MP.XmlConfigComparer.Runner
 
     private static void PrintUsage()
     {
-      Console.WriteLine("usage: MP.XmlConfigComparer.Runner <config file path1> <config file path2> <output file>");
+      Console.WriteLine("usage: MP.XmlConfigComparer.Runner <base config file path1> <traget config file path2> <output file>");
     }
   }
 }

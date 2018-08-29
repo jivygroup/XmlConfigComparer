@@ -8,6 +8,6 @@ namespace MP.XmlConfigComparer.Core
 {
     public interface IXmlConfigurationComparer
     {
-      Task<CompareResult> Compare(string configPath1, string configPath2);
+      Task<CompareResult> Compare(string baseConfigFile, string tragetConfigFile);
     }
 }

@@ -8,22 +8,22 @@ namespace MP.XmlConfigComparer.Core
 {
   public class CompareResultsPrinter : ICompareResultsPrinter
   {
-    public Task PrintResults(CompareResult compareResult, string configFile1, string configFile2, string outputFile = null)
+    public Task PrintResults(CompareResult compareResult, string baseConfigFile, string tragetConfigFile, string outputFile = null)
     {
       if (outputFile == null)
       {
-        outputFile = GenerateFileName(configFile1, configFile2);
+        outputFile = GenerateFileName(baseConfigFile, tragetConfigFile);
       }
-      DataTable resultsDataTable = CreateResultsDataTable(compareResult, configFile1, configFile2);
+      DataTable resultsDataTable = CreateResultsDataTable(compareResult, baseConfigFile, tragetConfigFile);
       XLWorkbook workbook = new XLWorkbook();
       workbook.Worksheets.Add(resultsDataTable);
       workbook.SaveAs(outputFile);
       return Task.CompletedTask;
     }
 
-    private string GenerateFileName(string configFile1, string configFile2)
+    private string GenerateFileName(string baseConfigFile, string tragetConfigFile)
     {
-      return $"out_{GetInputFile(configFile1)}_{GetInputFile(configFile2)}_{DateTime.Now:yyyy-dd-M--HH-mm}.xlsx";
+      return $"out_{GetInputFile(baseConfigFile)}_{GetInputFile(tragetConfigFile)}_{DateTime.Now:yyyy-dd-M--HH-mm}.xlsx";
     }
 
     private string GetInputFile(string configFile)
@@ -31,14 +31,14 @@ namespace MP.XmlConfigComparer.Core
       return $"{System.IO.Path.GetFileNameWithoutExtension(configFile)}";
     }
 
-    private DataTable CreateResultsDataTable(CompareResult compareResult, string configFile1, string configFile2)
+    private DataTable CreateResultsDataTable(CompareResult compareResult, string baseConfigFile, string tragetConfigFile)
     {
       DataTable dt = new DataTable("compare results");
       dt.Columns.Add(new DataColumn("diff source"));
       dt.Columns.Add(new DataColumn("Identifier"));
       dt.Columns.Add(new DataColumn("modification type"));
-      dt.Columns.Add(new DataColumn(configFile1));
-      dt.Columns.Add(new DataColumn(configFile2));
+      dt.Columns.Add(new DataColumn(baseConfigFile));
+      dt.Columns.Add(new DataColumn(tragetConfigFile));
       dt.Columns.Add(new DataColumn("LineNum1"));
       dt.Columns.Add(new DataColumn("LineNum2"));
 
