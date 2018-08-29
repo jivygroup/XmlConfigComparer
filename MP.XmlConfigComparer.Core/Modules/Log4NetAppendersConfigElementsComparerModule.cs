@@ -14,10 +14,12 @@ namespace MP.XmlConfigComparer.Core.Modules
 
     public Task<List<ConfigurationDiff>> Compare(XElement configElements1, XElement configElements2)
     {
-
-   
+      
+    
 
       return Task.FromResult(new List<ConfigurationDiff>());
     }
   }
+
+  
 }
