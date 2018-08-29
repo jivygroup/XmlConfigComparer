@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MP.XmlConfigComparer.Core
 {
-  public interface ICompareResultsPrinter
+  public interface ICompareResultsPrinter 
   {
-    Task PrintResults(CompareResult compareResult, string configFile1, string configFile2,string outputFile);
+    Task PrintResults(CompareResult compareResult, string configFile1, string configFile2,string outputFile = null);
   }
 }

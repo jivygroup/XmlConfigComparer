@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using MP.XmlConfigComparer.Core;
@@ -19,7 +16,12 @@ namespace MP.XmlConfigComparer.Runner
         var comparer = container.Resolve<IXmlConfigurationComparer>();
         var configFile1 = args[0];
         var configFile2 = args[1];
-        var outputFile = args[2];
+        string outputFile = null;
+        if (args.Length >= 3 && !string.IsNullOrWhiteSpace(args[2]))
+        {
+          outputFile = args[2];
+        }
+
         var res = await comparer.Compare(configFile1, configFile2);
         var printer = container.Resolve<ICompareResultsPrinter>();
 
