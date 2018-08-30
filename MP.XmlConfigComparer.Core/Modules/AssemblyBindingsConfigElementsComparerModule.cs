@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using MP.XmlConfigComparer.Core.Helpers;
@@ -10,7 +8,7 @@ namespace MP.XmlConfigComparer.Core.Modules
 {
   public class AssemblyBindingsConfigElementsComparerModule : IConfigElementsComparerModule
   {
-    public string DiffType => "AssemblyBindings";
+    public string DiffType => "assemblyBinding";
 
     public Task<List<ConfigurationDiff>> Compare(XElement configElements1, XElement configElements2)
     {
@@ -26,11 +24,11 @@ namespace MP.XmlConfigComparer.Core.Modules
         diffList.Add(new ConfigurationDiff
         {
           Identifier = "GcServerEnabled",
-          ConfigurationItem1 = new ConfigurationElement
+          ConfigurationItem1 = !asseBindings1.GcServerEnable.HasValue? null : new ConfigurationElement
           {
             Value = asseBindings1.GcServerEnable.ToString() 
           },
-          ConfigurationItem2 = new ConfigurationElement
+          ConfigurationItem2 = !asseBindings2.GcServerEnable.HasValue? null : new ConfigurationElement
           {
             Value = asseBindings2.GcServerEnable.ToString() 
           }
@@ -128,11 +126,11 @@ namespace MP.XmlConfigComparer.Core.Modules
       };
     }
 
-    private bool GetGcServer(XElement gcServerElement)
+    private bool? GetGcServer(XElement gcServerElement)
     {
       if (gcServerElement?.Attribute("enabled") == null)
       {
-        return false;
+        return null;
       }
 
       return bool.Parse(gcServerElement?.Attribute("enabled").Value);
@@ -141,7 +139,7 @@ namespace MP.XmlConfigComparer.Core.Modules
 
   internal class RuntimeAssemblyBindings
   {
-    public bool GcServerEnable { get; set; }
+    public bool? GcServerEnable { get; set; }
     public List<DependentAssemblyBinding> DependentAssemblyBindings { get; set; }
   }
 
