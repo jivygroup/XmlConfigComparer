@@ -24,11 +24,12 @@ namespace MP.XmlConfigComparer.Core.Modules
       if (element1 == null || element2 == null ||
           !XElementExtensions.DeepEqualsWithNormalization(element1, element2))
       {
+        var diff = XElementExtensions.DeepEqualsWithNormalizationString(element1, element2);
         return Task.FromResult(new List<ConfigurationDiff>
         {
           new ConfigurationDiff()
           {
-            Identifier = DiffType,
+            Identifier = $"{ElementName}-{diff}" ,
             ConfigurationItem1 = element1 == null ? null : new ConfigurationElement {Value = element1.ToString(),LineNum = element1.GetLineNumber() },
             ConfigurationItem2 = element2 == null ? null : new ConfigurationElement {Value = element2.ToString(),LineNum = element2.GetLineNumber() },
           }

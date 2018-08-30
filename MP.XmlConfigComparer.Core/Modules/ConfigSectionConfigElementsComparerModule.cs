@@ -29,7 +29,7 @@ namespace MP.XmlConfigComparer.Core.Modules
           var localConfigSection = configSectionsDic2[key];
           diffList.Add(new ConfigurationDiff
           {
-            Identifier = key,
+            Identifier = localConfigSection.Element == null ? $"{key}:declaration" : key,
             ConfigurationItem1 = null,
             ConfigurationItem2 = new ConfigurationElement {Value = localConfigSection.Element?.ToString(),LineNum = localConfigSection.Element?.GetLineNumber()}
           });
@@ -39,7 +39,7 @@ namespace MP.XmlConfigComparer.Core.Modules
           var localConfigSection = configSectionsDic1[key];
           diffList.Add(new ConfigurationDiff
           {
-            Identifier = key,
+            Identifier = localConfigSection.Element == null ? $"{key}:declaration" : key,
             ConfigurationItem2 = null,
             ConfigurationItem1 = new ConfigurationElement {Value = localConfigSection.Element?.ToString(),LineNum = localConfigSection.Element?.GetLineNumber()}
           });
@@ -56,11 +56,13 @@ namespace MP.XmlConfigComparer.Core.Modules
           });
         }
 
-        else if (!IsEqual(configSectionInfo1,configSectionInfo2))
+        
+        else if (IsEqual(configSectionInfo1, configSectionInfo2).Diff!= null)
         {
+          var diff = IsEqual(configSectionInfo1, configSectionInfo2);
           diffList.Add(new ConfigurationDiff
           {
-            Identifier = key,
+            Identifier = $"{key}-{diff.Diff}-{diff.Value}",
             ConfigurationItem1 = configSectionInfo1.Element == null ? null : new ConfigurationElement {Value = configSectionInfo1.Element?.ToString(),LineNum = configSectionInfo1.Element?.GetLineNumber()},
             ConfigurationItem2 = configSectionInfo2.Element == null ? null :new ConfigurationElement {Value = configSectionInfo2.Element?.ToString(),LineNum = configSectionInfo2.Element?.GetLineNumber()}
           });
@@ -74,15 +76,15 @@ namespace MP.XmlConfigComparer.Core.Modules
       
     }
 
-    private bool IsEqual(ConfigSectionInfo configSectionInfo1, ConfigSectionInfo configSectionInfo2)
+    private (string Diff,string Value)  IsEqual(ConfigSectionInfo configSectionInfo1, ConfigSectionInfo configSectionInfo2)
     {
       if ((configSectionInfo1 == null && configSectionInfo2 == null) ||
           (configSectionInfo1?.Element == null && configSectionInfo2?.Element == null))
       {
-        return true;
+        return (null,null);
       }
 
-      return XElementExtensions.DeepEqualsWithNormalization(configSectionInfo1.Element, configSectionInfo2.Element);
+      return XElementExtensions.DeepEqualsWithNormalizationString(configSectionInfo1.Element, configSectionInfo2.Element);
     }
 
     private List<ConfigSectionInfo> ReadConfigSections(XElement configElements)
