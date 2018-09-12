@@ -11,10 +11,17 @@ namespace MP.XmlConfigComparer.Core.Modules
 
     public abstract string ElementName { get; }
 
+    public string NameSpace { get; set; }
+
     public Task<List<ConfigurationDiff>> Compare(XElement configElements1, XElement configElements2)
     {
-      var element1 = ShouldBeExluded(configElements1) ? null : configElements1.Element(ElementName);
-      var element2 = ShouldBeExluded(configElements2) ? null : configElements2.Element(ElementName);
+      var elementName = ElementName;
+      if (NameSpace != null)
+      {
+        elementName = "{" + NameSpace + "}" + elementName;
+      }
+      var element1 = ShouldBeExcluded(configElements1) ? null : configElements1.Name == elementName ? configElements1 : configElements1.Element(elementName);
+      var element2 = ShouldBeExcluded(configElements2) ? null : configElements2.Name == elementName ? configElements2 : configElements2.Element(elementName);
 
       if (element1 == null && element2 == null)
       {
@@ -38,7 +45,7 @@ namespace MP.XmlConfigComparer.Core.Modules
       return Task.FromResult(new List<ConfigurationDiff>());
     }
 
-    protected virtual bool ShouldBeExluded(XElement configElements2) => false;
+    protected virtual bool ShouldBeExcluded(XElement configElements2) => false;
 
   }
 

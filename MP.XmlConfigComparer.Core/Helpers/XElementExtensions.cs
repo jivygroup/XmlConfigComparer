@@ -27,7 +27,14 @@ namespace MP.XmlConfigComparer.Core.Helpers
       XElement d1 = NormalizeElement(element1);
       XElement d2 = NormalizeElement(element2);
 
-      return DeepEquals(d1, d2);
+      var res = DeepEquals(d1, d2);
+      //in case of bug !!!!
+      if (res.Diff == null &&  !XNode.DeepEquals(d1,d2))
+      {
+        return ($"element:{d1.Name}", d1.Value);
+      }
+
+      return res;
 
     }
 
@@ -65,6 +72,7 @@ namespace MP.XmlConfigComparer.Core.Helpers
         {
           return diffRes;
         }
+       
       }
 
       return (null, null);

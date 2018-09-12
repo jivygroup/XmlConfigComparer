@@ -14,7 +14,7 @@ namespace MP.XmlConfigComparer.Core.Modules
 
     public override string ElementName => "log4net";
 
-    protected override bool ShouldBeExluded(XElement configElements)
+    protected override bool ShouldBeExcluded(XElement configElements)
     {
       var configSectionsElements = configElements?.Element("configSections")?.Descendants("section");
 
