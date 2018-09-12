@@ -14,18 +14,6 @@ namespace MP.XmlConfigComparer.Core.Modules
 
     public override string ElementName => "nlog";
 
-    protected override bool ShouldBeExcluded(XElement configElements)
-    {
-      var configSectionsElements = configElements?.Element("configSections")?.Descendants("section");
-
-      if (configSectionsElements == null)
-      {
-        return false;
-      }
-
-      var hasLog4NetConfigSection = configSectionsElements.Any(element => element.Attribute("name")?.Value == "nlog");
-
-      return hasLog4NetConfigSection;
-    }
+   
   }
 }

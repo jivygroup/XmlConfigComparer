@@ -8,6 +8,8 @@ namespace MP.XmlConfigComparer.Core.Modules
 {
   public class ConfigSectionConfigElementsComparerModule : IConfigElementsComparerModule
   {
+    private readonly string[] ExculudeConfigNames = new string[]{"log4net","nlog"};
+
     public string DiffType => "ConfigSections";
 
     public Task<List<ConfigurationDiff>> Compare(XElement configElements1, XElement configElements2)
@@ -102,7 +104,7 @@ namespace MP.XmlConfigComparer.Core.Modules
         Type = element.Attribute("type")?.Value,
         Element = configElements.Element(element.Attribute("name")?.Value)
 
-      } ).ToList();
+      } ).Where(info => !ExculudeConfigNames.Contains(info.Name) ).ToList();
     }
   }
 
