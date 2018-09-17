@@ -20,8 +20,8 @@ namespace MP.XmlConfigComparer.Core.Modules
       {
         elementName = "{" + NameSpace + "}" + elementName;
       }
-      var element1 = ShouldBeExcluded(configElements1) ? null : configElements1.Name == elementName ? configElements1 : configElements1.Element(elementName);
-      var element2 = ShouldBeExcluded(configElements2) ? null : configElements2.Name == elementName ? configElements2 : configElements2.Element(elementName);
+      var element1 = ShouldBeExcluded(configElements1) ? null : configElements1.Name.LocalName == elementName ? configElements1 : configElements1.Element(elementName);
+      var element2 = ShouldBeExcluded(configElements2) ? null : configElements2.Name.LocalName == elementName ? configElements2 : configElements2.Element(elementName);
 
       if (element1 == null && element2 == null)
       {
