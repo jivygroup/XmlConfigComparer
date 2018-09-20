@@ -48,15 +48,7 @@ namespace MP.XmlConfigComparer.Core.Modules
           
         }
 
-        else if (configSectionInfo1.Type != configSectionInfo2.Type)
-        {
-          diffList.Add(new ConfigurationDiff
-          {
-            Identifier = key,
-            ConfigurationItem1 = new ConfigurationElement {Value = configSectionInfo1.Type,LineNum = configSectionInfo1.Element?.GetLineNumber()},
-            ConfigurationItem2 = new ConfigurationElement {Value = configSectionInfo2.Type,LineNum = configSectionInfo2.Element?.GetLineNumber()}
-          });
-        }
+       
 
         
         else if (IsEqual(configSectionInfo1, configSectionInfo2).Diff!= null)
@@ -67,6 +59,16 @@ namespace MP.XmlConfigComparer.Core.Modules
             Identifier = $"{key}-{diff.Diff}-{diff.Value}",
             ConfigurationItem1 = configSectionInfo1.Element == null ? null : new ConfigurationElement {Value = configSectionInfo1.Element?.ToString(),LineNum = configSectionInfo1.Element?.GetLineNumber()},
             ConfigurationItem2 = configSectionInfo2.Element == null ? null :new ConfigurationElement {Value = configSectionInfo2.Element?.ToString(),LineNum = configSectionInfo2.Element?.GetLineNumber()}
+          });
+        }
+
+        else if (configSectionInfo1.Type != configSectionInfo2.Type)
+        {
+          diffList.Add(new ConfigurationDiff
+          {
+            Identifier = key,
+            ConfigurationItem1 = new ConfigurationElement {Value = configSectionInfo1.Type,LineNum = configSectionInfo1.Element?.GetLineNumber()},
+            ConfigurationItem2 = new ConfigurationElement {Value = configSectionInfo2.Type,LineNum = configSectionInfo2.Element?.GetLineNumber()}
           });
         }
 
