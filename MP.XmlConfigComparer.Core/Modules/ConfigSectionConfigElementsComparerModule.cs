@@ -104,7 +104,7 @@ namespace MP.XmlConfigComparer.Core.Modules
       {
         Name = element.Attribute("name")?.Value,
         Type = element.Attribute("type")?.Value,
-        Element = configElements.Element(element.Attribute("name")?.Value)
+        Element = configElements.Elements().SingleOrDefault(elm => elm.Name.LocalName  == element.Attribute("name")?.Value)
 
       } ).Where(info => !ExculudeConfigNames.Contains(info.Name) ).ToList();
     }
