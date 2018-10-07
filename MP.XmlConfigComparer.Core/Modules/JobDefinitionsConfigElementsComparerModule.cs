@@ -14,10 +14,7 @@ namespace MP.XmlConfigComparer.Core.Modules
 
     public override string ElementName => "job-scheduling-data";
 
-    public JobDefinitionsConfigElementsComparerModule()
-    {
-      NameSpace = "http://quartznet.sourceforge.net/JobSchedulingData";
-    }
+ 
   }
 
   

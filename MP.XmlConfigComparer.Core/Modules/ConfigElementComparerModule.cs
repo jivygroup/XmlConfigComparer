@@ -10,16 +10,12 @@ namespace MP.XmlConfigComparer.Core.Modules
     public abstract string DiffType { get; }
 
     public abstract string ElementName { get; }
-
-    public string NameSpace { get; set; }
+    
 
     public Task<List<ConfigurationDiff>> Compare(XElement configElements1, XElement configElements2)
     {
       var elementName = ElementName;
-      if (NameSpace != null)
-      {
-        elementName = "{" + NameSpace + "}" + elementName;
-      }
+     
       var element1 = ShouldBeExcluded(configElements1) ? null : configElements1.Name.LocalName == elementName ? configElements1 : configElements1.Element(elementName);
       var element2 = ShouldBeExcluded(configElements2) ? null : configElements2.Name.LocalName == elementName ? configElements2 : configElements2.Element(elementName);
 
